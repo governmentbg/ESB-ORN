@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmThrow.msgnode="ComIbmThrow.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmWSRequest.msgnode="ComIbmWSRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="getWebServiceUniqueNumber.subflow" nsPrefix="getWebServiceUniqueNumber.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="getWebServiceUniqueNumber" bundleName="getWebServiceUniqueNumber" pluginId="DAEU_ORN"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/DAEU_ORN/icons/full/obj16/getWebServiceUniqueNumber.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/DAEU_ORN/icons/full/obj30/getWebServiceUniqueNumber.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="31,103">
+        <translation xmi:type="utility:TranslatableString" key="Input" bundleName="getWebServiceUniqueNumber" pluginId="DAEU_ORN"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="1038,110">
+        <translation xmi:type="utility:TranslatableString" key="Output" bundleName="getWebServiceUniqueNumber" pluginId="DAEU_ORN"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="660,99" computeExpression="esql://routine/#getResource_Response.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ComputeResponse"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="444,98" URLSpecifier="http://172.23.121.74:9090/WebServiceUniqueNumber/rest/orn" httpMethod="GET" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON">
+        <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="671,182" computeExpression="esql://routine/#getResource_Error.Main" computeMode="exceptionAndDestination">
+        <translation xmi:type="utility:ConstantString" string="ComputeError"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="172,95" computeExpression="esql://routine/#WebServiceUniqueNumber_Parameters.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="SetParameters"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="334,97" destination="file" filePath="/var/mqsi/common/log/ORNFile.log" pattern="---------------------------------------------------------------------------------------------------------------------------&#xD;&#xA;S T A R T   O F   T R A C E: ${ProcessId}  - ${CURRENT_TIMESTAMP}&#xD;&#xA;MessageFlowLabel:     &#x9;${MessageFlowLabel} &#xD;&#xA;NodeLabel:     &#x9;&#x9;&#x9;${NodeLabel}&#xD;&#xA;-- L O C A L    E N V I R O N M E N T &#xD;&#xA;${LocalEnvironment}      &#xD;&#xA;--  R O O T request   &#xD;&#xA;${Root}&#xD;&#xA;&#xD;&#xA;">
+        <translation xmi:type="utility:ConstantString" string="LogRequest"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="685,25" destination="file" filePath="/var/mqsi/common/log/ORNFile.log" pattern="============================== S T A R T   O F   T R A C E =============================&#xD;&#xA;                  Time:     ${CURRENT_TIMESTAMP}&#xD;&#xA;   IntegrationNodeName:     ${BrokerName}  &#xD;&#xA;      QueueManagerName:     ${QueueManagerName}&#xD;&#xA;IntegrationNodeVersion:     ${BrokerVersion}  &#xD;&#xA;              Platform:     ${Family}&#xD;&#xA;             ProcessID:     ${ProcessId} &#xD;&#xA; IntegrationNodeUserId:     ${BrokerUserId}&#xD;&#xA;IntegrationServerLabel:     ${ExecutionGroupLabel}&#xD;&#xA;      ApplicationLabel:     ${ApplicationLabel}&#xD;&#xA;      MessageFlowLabel:     ${MessageFlowLabel}&#xD;&#xA;             NodeLabel:     ${NodeLabel}&#xD;&#xA;==============================     E X C E P T I O N S     =============================&#xD;&#xA;${ExceptionList}     &#xD;&#xA;========================   L O C A L    E N V I R O N M E N T   ========================&#xD;&#xA;${LocalEnvironment}      &#xD;&#xA;==============================    E N V I R O N M E N T    =============================&#xD;&#xA;${Environment}    &#xD;&#xA;==============================          R O O T         ================================&#xD;&#xA;${Root}&#xD;&#xA;==============================   E N D   O F   T R A C E   =============================">
+        <translation xmi:type="utility:ConstantString" string="LogError"/>
+      </nodes>
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="889,17" messageNumber="400">
+        <translation xmi:type="utility:ConstantString" string="Throw"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="904,115" destination="file" filePath="/var/mqsi/common/log/ORNFile.log" pattern="-------------&#xD;&#xA;${ProcessId}  - ${CURRENT_TIMESTAMP}&#xD;&#xA;-------------&#xD;&#xA;R O O T response&#xD;&#xA;${Root}&#xD;&#xA; E N D   O F   T R A C E &#xD;&#xA;---------------------------------------------------------------------------------------------------------------------------">
+        <translation xmi:type="utility:ConstantString" string="LogResponse"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_4" sourceNode="InTerminal.Input_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,79 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "DAEU_ORN",
+    "version" : "1.0.0",
+    "description" : "DAEU_ORN"
+  },
+  "paths" : {
+    "/WebServiceUniqueNumber" : {
+      "get" : {
+        "operationId" : "getWebServiceUniqueNumber",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/ORNResponse"
+            }
+          },
+          "400" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "500" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve WebServiceUniqueNumber",
+        "parameters" : [ {
+          "name" : "uri_service",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "bulstat",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "type_service",
+          "in" : "query",
+          "type" : "string",
+          "required" : true
+        } ]
+      }
+    },
+    "/VerifyUniqueNumber" : {
+      "get" : {
+        "operationId" : "getVerifyUniqueNumber",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/ORNResponse"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve VerifyUniqueNumber"
+      }
+    }
+  },
+  "basePath" : "/orn/connector/v1",
+  "definitions" : {
+    "ORNResponse" : {
+      "type" : "object",
+      "properties" : {
+        "orn" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

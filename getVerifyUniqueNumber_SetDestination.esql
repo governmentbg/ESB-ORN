@@ -1,0 +1,14 @@
+
+
+CREATE COMPUTE MODULE getVerifyUniqueNumber_SetDestination
+	DECLARE ORNBaseURL EXTERNAL CHARACTER '';
+	
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputLocalEnvironment = InputLocalEnvironment;
+		SET OutputLocalEnvironment.Destination.HTTP.RequestURL = ORNBaseURL || '/WebServiceUniqueNumber/rest/orn/test';
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

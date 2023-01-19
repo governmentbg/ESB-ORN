@@ -1,0 +1,30 @@
+
+
+CREATE COMPUTE MODULE WebServiceUniqueNumber_Parameters
+	DECLARE ORNBaseURL EXTERNAL CHARACTER '';
+	
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+			SET OutputLocalEnvironment	=InputLocalEnvironment;
+		SET OutputLocalEnvironment.Destination.HTTP.RequestURL = ORNBaseURL || '/WebServiceUniqueNumber/rest/orn';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.bulstat = InputLocalEnvironment.REST.Input.Parameters.bulstat;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.type_service = InputLocalEnvironment.REST.Input.Parameters.type_service;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.uri_service = InputLocalEnvironment.REST.Input.Parameters.uri_service;
+	
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
